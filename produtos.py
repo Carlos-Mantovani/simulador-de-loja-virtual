@@ -28,4 +28,3 @@ class Produto:
     @preco.setter
     def preco(self, novo_preco):
         self.__preco = novo_preco
-

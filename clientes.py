@@ -1,3 +1,4 @@
+from produtos import Produto
 class Cliente:
     def __init__(self, nome, email, dinheiro):
         self.__nome = nome
@@ -24,4 +25,17 @@ class Cliente:
     def email(self, novo_email):
         self.__email = novo_email
 
+    def depositar_dinheiro(self, valor):
+        self.__dinheiro += valor
 
+    def comprar(self, id_produto):
+        if id_produto <= len(Produto.lista_de_produtos):
+            produto = Produto.lista_de_produtos[id_produto]
+            if self.__dinheiro >= produto.preco:
+                self.__dinheiro -= produto.preco
+                Produto.lista_de_produtos.remove(produto)
+                print("{} Comprado por {}".format(produto.nome, produto.preco))
+            else:
+                print("Você não possui dinheiro suficiente")
+        else:
+            print("Produto não existe")
