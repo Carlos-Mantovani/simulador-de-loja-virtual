@@ -31,9 +31,11 @@ class Cliente:
     def comprar(self, id_produto):
         if id_produto <= len(Produto.lista_de_produtos):
             produto = Produto.lista_de_produtos[id_produto]
+            produto_apresentacao = Produto.apresentacao_dos_produtos[id_produto]
             if self.__dinheiro >= produto.preco:
                 self.__dinheiro -= produto.preco
                 Produto.lista_de_produtos.remove(produto)
+                Produto.apresentacao_dos_produtos.remove(produto_apresentacao)
                 print("{} Comprado por {}".format(produto.nome, produto.preco))
             else:
                 print("Você não possui dinheiro suficiente")
